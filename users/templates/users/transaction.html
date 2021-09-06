@@ -1,0 +1,46 @@
+
+{% if user.is_authenticated %}
+<div class="alert alert-success" role="alert">
+    <h3>{{ user.username }} Good Luck with your transaction!</h3><br>
+    <form action="/transaction-form/" method='GET'>
+        {% csrf_token %}
+        {{ form }}
+        <label for="crypto">Your crypto type:</label><br>
+        <select name="crypto" id="crypto">
+          <optgroup label="Crypto">
+            <option value="BTC">Bitcoin (BTC)</option>
+            <option value="ETH">Ethereum (ETH)</option>
+          </optgroup>
+          <optgroup label="Stable Coins">
+            <option value="USDT">Theter (USDT)</option>
+            <option value="EUSD">E-Dollar (USDE)</option>
+            <input id="userId" name="userId" type="hidden" value= {{ user.id }}>
+          </optgroup>
+        </select><br><br>
+
+        <label for="transtype">Want to buy or sell?</label><br>
+        <select name="transtype" id="transtype">
+          <optgroup label="Transaction Type">
+            <option value="BUY">Buy</option>
+            <option value="SELL">Sell</option><br><br>
+          </optgroup>
+        </select><br><br>
+
+        <label for="qty">Quantity:</label><br>
+        <input type="text" id="qty" name="qty" value="0"><br>
+        <br><br>
+        <input type="submit" value="Go For It Tigger!">
+      </form>
+      
+    <a href="{% url 'historial' %}">Transaction history</a><br>
+    <a href="{% url 'logout' %}">Wanna Logout?</a><br>
+    <a href="{% url 'home' %}"> Well you can always go back home</a><br>
+</div>
+{% else %}
+<h3>Uhmm, you really shouldn't be here!</h3><br>
+<div class="alert alert-success" role="alert">
+    <a href="{% url 'login' %}">You should login!</a>
+    <a href="{% url 'register' %}">Or maybe signup if you havent</a>
+    <a href="{% url 'home' %}"> Well you can always go back home</a>
+</div>
+{% endif %}

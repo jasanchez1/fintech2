@@ -1,0 +1,15 @@
+
+{% if user.is_authenticated %}
+<div class="alert alert-success" role="alert">
+    <h3>Welcome {{ user.username }}!</h3>
+    <a href="{% url 'transaction' %}">Buy/sell Crypto!</a><br>
+    <a href="{% url 'historial' %}">Transaction history</a><br>
+    <a href="{% url 'logout' %}">Wanna Logout?</a><br>
+</div>
+{% else %}
+<div class="alert alert-success" role="alert">
+    <h3>Welcome!</h3>
+    <a href="{% url 'register' %}">Signup</a><br>
+    <a href="{% url 'login' %}">Login</a><br>
+</div>
+{% endif %}

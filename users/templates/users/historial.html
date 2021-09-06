@@ -1,0 +1,30 @@
+
+{% if user.is_authenticated %}
+<div class="alert alert-success" role="alert">
+    <h3>{{ user.username }} your historial it's here!</h3>
+
+    {% if latest_transaction_list %}
+    <ul>
+    {% for transaction in latest_transaction_list %}
+        {% if transaction.belongs_to == user.id %}
+        <li> Crypto Type:{{ transaction.cryptoType }} Intent: {{ transaction.intention }} Quantity: {{ transaction.quantity }}; Date:{{ transaction.pub_date }}</a></li>
+
+        {% endif %}
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No transactions registered yet.</p>
+{% endif %}
+
+    <a href="{% url 'transaction' %}">Buy/sell Crypto!</a>
+    <a href="{% url 'historial' %}">Transaction history</a>
+    <a href="{% url 'logout' %}">Wanna Logout?</a>
+</div>
+{% else %}
+<h3>Uhmm, you really shouldn't be here!</h3><br>
+<div class="alert alert-success" role="alert">
+    <a href="{% url 'login' %}">You should login!</a>
+    <a href="{% url 'register' %}">Or maybe signup if you havent</a>
+    <a href="{% url 'home' %}"> Well you can always go back home</a>
+</div>
+{% endif %}
