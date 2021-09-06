@@ -4,11 +4,12 @@ ref: https://python.plainenglish.io/user-registration-and-login-authentication-i
 
 Running the app locally:
 
-to run the project: docker-compose up
-
-in case of error please try: docker-compose run web python manage.py makemigrations users
-then: docker-compose run web python manage.py migrate
-and docker-compose up again
+to run the project: sudo docker-compose build
+                    sudo docker-compose up
+                     
+if running, migrate!
+                    sudo docker-compose run web python manage.py migrate
+and                 sudo docker-compose up again
 
 
 Once running go to:
